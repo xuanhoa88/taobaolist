@@ -8,22 +8,27 @@ angular
         vm.testdata = ['foo', 'bar', 'banana'];
         vm.currentList = 'default';
         
-        vm.fetchItems = taobaoSrvc.getProducts(function(response){
+        vm.fetchItems = function(){
             
             vm.productList = [];
             
-            for (var i = 0; i < response.length; i++){
+            taobaoSrvc.getProducts(function(response){
                 
-                if (response[i].listName == vm.currentList) {
-                       vm.productList.push(response[i]); 
+                for (var i = 0; i < response.length; i++){
+                    
+                    if (response[i].listName == vm.currentList) {
+                        vm.productList.push(response[i]); 
+                    }
                 }
-            }
-            
-            //after receiving the callback apply it to the scope
-           // $scope.$apply();   
-            //vm.productList = response;
-            
-        });
+                
+                //after receiving the callback apply it to the scope
+                $scope.$apply();   
+                //vm.productList = response;
+                
+            });
+        };
+        
+        vm.fetchItems();
         
         vm.createNewList = function(){
             console.log(vm.newList);
@@ -43,7 +48,7 @@ angular
                         var url = tabs[0].url;
                         response[0].url = url;
                         taobaoSrvc.addProduct(response[0], listName);
-                        $scope.$apply();
+                        vm.fetchItems();
                         
                     } else {
                         console.log('returned nothing');
@@ -58,6 +63,6 @@ angular
         
         vm.removeProduct = function(id) {
             taobaoSrvc.removeProduct(id);
-            $scope.$apply();
+            vm.fetchItems();
         }
     }
