@@ -1,0 +1,40 @@
+<!doctype html>
+<head>
+<title></title>
+</head>
+<body ng-app='taobaoList' ng-controller="taobaoCtrl as vm">
+    
+ <div class='whole-container'>
+     
+     <div class='newList'>
+         <p>Create new shopping list:</p>
+         <form>
+         <input type='text' ng-model='vm.newList' placeholder='Enter new list name'></input>
+         <button ng-click='vm.createNewList(vm.newList)'>Create new</button>
+         </form>
+     </div>
+     
+     <div class='choose-list'>
+         <select ng-model="vm.currentList" ng-options='test for test in vm.testdata'>
+            </select>
+            <div class='current-list-header'>{{vm.currentList}}</div>
+     </div>
+     
+     <button ng-click='vm.addProduct("default")'>Press me</button>
+     
+     <div class='' ng-repeat='product in vm.productList track by $index'>
+         {{product.url}}
+         <br>{{product.name}}
+         <br>{{product.price}}
+         <br><div ng-click='vm.removeProduct(product.id)'>[x]</div>
+     </div>
+     
+ </div>
+    
+</body>
+<script src='angular.min.js'></script>
+<script src='taobaoApp.js'></script>
+<script src='taobaoSrvc.js'></script>
+<script src='taobaoCtrl.js'></script>
+<script src='popup.js'></script>
+</html>

@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+
+  "name": "Extension test",
+  "description": "Test extension",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  
+   "background": {
+        "persistent": false,
+        "scripts": ["background.js"]
+    },
+    
+    "content_scripts": [{
+        "matches": ["https://*.taobao.com/*"],
+        "js":      ["content.js"]
+    }],
+    
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "storage",
+    "https://ajax.googleapis.com/",
+    "https://*.taobao.com/*"
+  ]
+}
