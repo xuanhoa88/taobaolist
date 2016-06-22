@@ -6,7 +6,6 @@ angular
         
         vm = this;
         
-        vm.testdata = ['default','foo', 'bar', 'banana'];
         vm.currentList = 'default';
         
         vm.fetchItems = function(){
@@ -51,9 +50,14 @@ angular
             
         }
         
-        vm.createNewList = function(){
-            console.log(vm.newList);
-            taobaoSrvc.addNewList(vm.newList);
+        vm.createNewList = function(listName){
+            console.log(listName);
+            
+            if (!listName){
+                alert('Please enter list name.')
+            } else {
+                taobaoSrvc.addNewList(vm.newList);
+            }
         }
         
         vm.addProduct = function(listName){
@@ -69,6 +73,27 @@ angular
                         
                         var url = tabs[0].url;
                         response[0].url = url;
+                        
+                        //Because some taobao prices are set up with a price range, i.e. two prices,
+                        //since it might have different style items in the same listing,
+                        //we need to make a sanity check since the user might just add the listing
+                        //to the shopping list without picking the exact item with the exact price.
+                        // This will pick up the lowest price in the range. So it's better to send 
+                        // the price as an array anyway.
+                        
+                        var price = response[0].price;
+                    
+                        if (price.indexOf("-") > -1){
+                                console.log('splitting price');
+                                price = price.split("-");
+                                console.log(price);
+                                response[0].price = price;
+                            } else {
+                                var priceArray = [];
+                                priceArray.push(price);
+                                response[0].price = priceArray;
+                            }
+                        
                         taobaoSrvc.addProduct(response[0], listName);
                         vm.fetchItems();
                         
@@ -86,6 +111,19 @@ angular
         vm.removeProduct = function(id) {
             taobaoSrvc.removeProduct(id);
             vm.fetchItems();
+        }
+        
+        vm.deleteList = function(listName){
+            
+            var c = confirm('Delete this list?');
+            
+            if (c == true){
+                taobaoSrvc.deleteList(listName);
+                vm.currentList = 'default';
+                vm.fetchLists();
+            } else {
+                
+            }
         }
         
         vm.fetchItems();

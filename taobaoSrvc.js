@@ -43,15 +43,20 @@ angular
         
        //Remove one object
        this.removeProduct = function(item) {
+           
             this.data.splice(this.data.indexOf(item), 1);
             this.syncStorage();
+            
         }
        
        this.addProduct = function(item, listName){
            
            var id = this.data.length + 1;
            item.id = id;
-           item.price = item.price.substring(2);
+           item.price = item.price[0];
+           
+           var dirtyPrice = item.price;
+           item.price = Number(dirtyPrice.replace(/[^0-9\.]+/g,""));
            item.listName = listName;
            
            this.data.push(item);
@@ -121,6 +126,21 @@ angular
                 }
                 
             });
+       }
+       
+       this.deleteList = function(listName){
+           
+          chrome.storage.sync.get('taobaoListNames', function(keys) {
+                
+               listNames.splice(listNames.indexOf(listName), 1);
+                    
+               chrome.storage.sync.set({
+                taobaoListNames: listNames
+                    }, function() {
+                        console.log('list removed');
+                    });
+                    
+                });
        }
        
 

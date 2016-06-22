@@ -5,6 +5,8 @@ chrome.runtime.onMessage.addListener(
     
         responseArr = [];
         
+        var priceElement = document.getElementsByClassName('tb-rmb-num');
+        
         var price = document.getElementsByClassName('tb-rmb-num')[0].innerText;
         var name = document.getElementsByClassName('t-title')[0].innerText;
         
