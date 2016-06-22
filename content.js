@@ -5,10 +5,26 @@ chrome.runtime.onMessage.addListener(
     
         responseArr = [];
         
-        var priceElement = document.getElementsByClassName('tb-rmb-num');
-        
         var price = document.getElementsByClassName('tb-rmb-num')[0].innerText;
         var name = document.getElementsByClassName('t-title')[0].innerText;
+        
+        responseArr.push(
+            {
+                "name" : name,
+                "price" : price
+            }
+        );
+        
+      sendResponse(responseArr);
+      
+    };
+    
+   if (request.greeting == "catch_item_tmall") {
+    
+        responseArr = [];
+        
+        var price = document.getElementsByClassName('tm-price')[0].innerText;
+        var name = document.getElementsByClassName('tb-detail-hd')[0].innerText;
         
         responseArr.push(
             {

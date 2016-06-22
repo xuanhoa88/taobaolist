@@ -21,7 +21,7 @@
             <div class='current-list-header'>{{vm.currentList}}</div>
      </div>
      
-     <button ng-click='vm.addProduct(vm.currentList)'>Press me</button>
+     <button ng-click='vm.addProduct(vm.currentList)'>Add product</button>
      
      <div class='productListing' ng-repeat='product in vm.productList track by $index'>
          {{product.url}}

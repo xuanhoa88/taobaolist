@@ -16,7 +16,7 @@
     },
     
     "content_scripts": [{
-        "matches": ["https://*.taobao.com/*"],
+        "matches": ["https://*.taobao.com/*", "https://*.tmall.com/*"],
         "js":      ["content.js"]
     }],
     
@@ -25,6 +25,7 @@
     "activeTab",
     "storage",
     "https://ajax.googleapis.com/",
-    "https://*.taobao.com/*"
+    "https://*.taobao.com/*",
+    "https://*.tmall.com/*"
   ]
 }

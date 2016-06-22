@@ -63,8 +63,14 @@ angular
         vm.addProduct = function(listName){
             
             chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+                
+            if (tabs[0].url.indexOf("tmall") > -1){ 
+                    var fetchMessage = 'catch_item_tmall'
+                } else {
+                    var fetchMessage = 'catch_item'
+                }
      
-            chrome.tabs.sendMessage(tabs[0].id, {greeting: "catch_item"}, function(response) {
+            chrome.tabs.sendMessage(tabs[0].id, {greeting: fetchMessage}, function(response) {
                 
                     console.log(tabs[0].id);
                     console.log(response);
