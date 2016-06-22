@@ -3,9 +3,10 @@ angular
     .controller('taobaoCtrl', taobaoCtrl);
     
     function taobaoCtrl(taobaoSrvc, $scope){
+        
         vm = this;
-        vm.test = 'lol';
-        vm.testdata = ['foo', 'bar', 'banana'];
+        
+        vm.testdata = ['default','foo', 'bar', 'banana'];
         vm.currentList = 'default';
         
         vm.fetchItems = function(){
@@ -23,12 +24,16 @@ angular
                 
                 //after receiving the callback apply it to the scope
                 $scope.$apply();   
-                //vm.productList = response;
                 
             });
         };
         
         vm.fetchItems();
+        
+        vm.switchList = function() {
+            vm.fetchItems();
+            
+        }
         
         vm.createNewList = function(){
             console.log(vm.newList);
