@@ -22,7 +22,7 @@ angular
                 }
                 
                 //after receiving the callback apply it to the scope
-                $scope.$apply();   
+                    $scope.$apply(); 
                 
             });
         };
@@ -32,7 +32,7 @@ angular
             console.log('getting lists from the service');
             vm.listNames = [];
             
-            taobaoSrvc.getListNames(function(response){
+            taobaoSrvc.getListNames( function(response){
                 
                 for (var i = 0; i < response.length; i++){
                     console.log(response[i]);
@@ -40,7 +40,7 @@ angular
                 }
                 
                 //after receiving the callback apply it to the scope
-                $scope.$apply();   
+                $scope.$apply(); 
                 
             });
         };
@@ -52,11 +52,29 @@ angular
         
         vm.createNewList = function(listName){
             console.log(listName);
+            console.log(vm.listNames);
+            
+            var dubs = false;
+            
+            //check for duplicates
+            for (var i = 0; i < vm.listNames.length; i++){
+                if (listName == vm.listNames[i]){
+                    dubs = true;
+                }
+            }
             
             if (!listName){
                 alert('Please enter list name.')
-            } else {
+            } 
+            else if (dubs) {
+                alert('This list already exists.');
+            }
+            else {
                 taobaoSrvc.addNewList(vm.newList);
+                //vm.newList = null;
+                //vm.fetchLists();
+                alert('New list created.');
+                location.reload();
             }
         }
         
@@ -115,8 +133,23 @@ angular
         }
         
         vm.removeProduct = function(id) {
+            
             taobaoSrvc.removeProduct(id);
             vm.fetchItems();
+        }
+        
+        vm.clearList = function(listName){
+            
+           var c = confirm('Clear this list?');
+            
+            if (c == true){
+                taobaoSrvc.clearList(listName);
+                vm.fetchItems();
+                //vm.fetchLists();
+            } else {
+                
+            }
+            
         }
         
         vm.deleteList = function(listName){
@@ -125,8 +158,9 @@ angular
             
             if (c == true){
                 taobaoSrvc.deleteList(listName);
-                vm.currentList = 'default';
-                vm.fetchLists();
+                location.reload();
+              /*  vm.currentList = 'default';
+                vm.fetchLists();*/
             } else {
                 
             }

@@ -44,8 +44,17 @@ angular
        //Remove one object
        this.removeProduct = function(item) {
            
-            this.data.splice(this.data.indexOf(item), 1);
-            this.syncStorage();
+           for (var i = 0; i < this.data.length; i++){
+               if (this.data[i].id == item){
+                   
+                   this.data.splice(this.data.indexOf(this.data[i]), 1);
+                   this.syncStorage();
+                   
+               }
+           } 
+           
+           /* this.data.splice(this.data.indexOf(item), 1);
+            this.syncStorage();*/
             
         }
        
@@ -128,10 +137,28 @@ angular
             });
        }
        
+       _this.clearList = function(listName){
+           
+           console.log("clearing list " + listName)
+           
+           for (var i = 0; i < this.data.length; i++){
+               if (this.data[i].listName == listName){
+                   console.log('deleting ' + this.data[i].name)
+                   this.data.splice(this.data.indexOf(this.data[i]), 1);
+                   this.syncStorage();
+                   
+               }
+           } 
+           
+           
+       }
+       
        this.deleteList = function(listName){
            
+          _this.clearList(listName);
+           
           chrome.storage.sync.get('taobaoListNames', function(keys) {
-                
+              
                listNames.splice(listNames.indexOf(listName), 1);
                     
                chrome.storage.sync.set({

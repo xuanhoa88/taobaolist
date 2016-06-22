@@ -16,10 +16,16 @@
 }
 
 /* line 11, sass/_buttons.scss */
+.delete-list {
+  background-color: #f16343;
+  color: #ffffff;
+}
+
+/* line 16, sass/_buttons.scss */
 .glyph {
   transition: all 0.1s ease-out;
 }
-/* line 15, sass/_buttons.scss */
+/* line 20, sass/_buttons.scss */
 .glyph:hover {
   transform: scale(1.1);
 }
@@ -83,6 +89,12 @@
   font-size: 1.4em;
   min-width: 100px;
   margin-right: 2em;
+  text-align: right;
+}
+
+/* line 47, sass/_list.scss */
+.list-controls {
+  display: flex;
 }
 
 /* line 6, sass/main.scss */
