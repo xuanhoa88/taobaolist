@@ -16,7 +16,7 @@
      
      <div class='choose-list'>
          <select ng-model="vm.currentList" id='currentList' ng-change='vm.switchList()'>
-            <option ng-repeat='option in vm.testdata' value='{{option}}'>{{option}}</option>
+            <option ng-repeat='option in vm.listNames' value='{{option}}'>{{option}}</option>
             </select>
             <div class='current-list-header'>{{vm.currentList}}</div>
      </div>

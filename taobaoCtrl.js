@@ -28,7 +28,23 @@ angular
             });
         };
         
-        vm.fetchItems();
+         vm.fetchLists = function(){
+            
+            console.log('getting lists from the service');
+            vm.listNames = [];
+            
+            taobaoSrvc.getListNames(function(response){
+                
+                for (var i = 0; i < response.length; i++){
+                    console.log(response[i]);
+                    vm.listNames.push(response[i]);
+                }
+                
+                //after receiving the callback apply it to the scope
+                $scope.$apply();   
+                
+            });
+        };
         
         vm.switchList = function() {
             vm.fetchItems();
@@ -37,6 +53,7 @@ angular
         
         vm.createNewList = function(){
             console.log(vm.newList);
+            taobaoSrvc.addNewList(vm.newList);
         }
         
         vm.addProduct = function(listName){
@@ -70,4 +87,7 @@ angular
             taobaoSrvc.removeProduct(id);
             vm.fetchItems();
         }
+        
+        vm.fetchItems();
+        vm.fetchLists();
     }

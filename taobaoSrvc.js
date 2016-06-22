@@ -7,7 +7,7 @@ angular
        _this = this;
        //Create empty array to populate with storage objects
        this.data = [];
-       
+       var listNames = [];
        
        //Get all the data from the storage
        this.getProducts = function(callback) {
@@ -62,11 +62,67 @@ angular
        
        this.addNewList = function(listName){
            
-            chrome.storage.sync.set({
-                listName: []
+           console.log('starting new list addition');
+           
+            chrome.storage.sync.get('taobaoListNames', function(keys) {
+                
+                if (keys.taobaoListNames != null) {
+                    
+                    console.log(keys.taobaoListNames);
+                    listNames = keys.taobaoListNames;
+                    
+                    console.log(listNames);
+                    listNames.push(listName);
+                    
+               chrome.storage.sync.set({
+                taobaoListNames: listNames
                     }, function() {
-                        console.log('New List ' + listName + ' created');
+                        console.log('listNames added');
                     });
+                } else {
+                    console.log('no lists found...');
+                }
+                
+            });
            
        }
+       
+       _this.initializeList = function(){
+               
+               console.log('no lists found, creating the initial one'); 
+                    
+               listNames.push('default');
+               
+               console.log(listNames);
+                   
+                   chrome.storage.sync.set({
+                        taobaoListNames: listNames
+                            }, function() {
+                                console.log('listNames added');
+                            });
+       };
+       
+       this.getListNames = function(callback){
+              
+           console.log('get all Lists');
+           
+            chrome.storage.sync.get('taobaoListNames', function(keys) {
+                
+                if (keys.taobaoListNames != null) {
+                    
+                    console.log(keys.taobaoListNames);
+                    listNames = keys.taobaoListNames;
+                    callback(listNames);
+                    
+                } else {
+                    
+                   _this.initializeList();
+                   
+                }
+                
+            });
+       }
+       
+
+       
    }
