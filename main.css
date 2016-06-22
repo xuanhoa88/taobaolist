@@ -1,0 +1,91 @@
+/* line 1, sass/_container.scss */
+.whole-container {
+  min-width: 550px;
+  padding: 2em;
+}
+
+/* line 1, sass/_buttons.scss */
+.button {
+  width: 200px;
+  border-radius: 10px;
+  border: 0;
+  padding: 0.5em;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* line 11, sass/_buttons.scss */
+.glyph {
+  transition: all 0.1s ease-out;
+}
+/* line 15, sass/_buttons.scss */
+.glyph:hover {
+  transform: scale(1.1);
+}
+
+/* line 1, sass/_form.scss */
+.newList-form {
+  margin-bottom: 1em;
+}
+/* line 5, sass/_form.scss */
+.newList-form h1 {
+  font-size: 1.3em;
+}
+/* line 9, sass/_form.scss */
+.newList-form .formField {
+  margin-right: 20px;
+  width: 235px;
+  padding: 0.5em;
+}
+
+/* line 1, sass/_list.scss */
+.list-picker {
+  padding: 0.5em;
+  width: 250px;
+}
+
+/* line 9, sass/_list.scss */
+.current-list-header h1 {
+  font-weight: 700;
+  font-size: 1.6em;
+}
+
+/* line 15, sass/_list.scss */
+.list-container {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+/* line 20, sass/_list.scss */
+.product-details {
+  display: flex;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+/* line 28, sass/_list.scss */
+.remove-product {
+  cursor: pointer;
+}
+
+/* line 32, sass/_list.scss */
+.product-name {
+  font-weight: 700;
+  max-width: 300px;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+/* line 39, sass/_list.scss */
+.product-price {
+  font-weight: 800;
+  font-size: 1.4em;
+  min-width: 100px;
+  margin-right: 2em;
+}
+
+/* line 6, sass/main.scss */
+body {
+  font-size: 12px;
+}

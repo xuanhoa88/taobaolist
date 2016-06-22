@@ -1,45 +1,51 @@
 <!doctype html>
 <head>
 <title></title>
+<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body ng-app='taobaoList' ng-controller="taobaoCtrl as vm">
     
  <div class='whole-container'>
      
-     <div class='newList'>
-         <p>Create new shopping list:</p>
+     <div class='newList-container'>
          <form>
-         <input type='text' ng-model='vm.newList' placeholder='Enter new list name'></input>
-         <button ng-click='vm.createNewList(vm.newList)'>Create new</button>
+            <div class='newList-form'>
+                <h1>Create new shopping list:</h1>
+                <input type='text' class='formField' ng-model='vm.newList' placeholder='Enter new list name'></input>
+                <button class='button' ng-click='vm.createNewList(vm.newList)'>Create new</button>
+            </div>
          </form>
      </div>
      
      <div class='choose-list'>
-         <select ng-model="vm.currentList" id='currentList' ng-change='vm.switchList()'>
+         <select ng-model="vm.currentList" id='currentList' ng-change='vm.switchList()' class='list-picker'>
             <option ng-repeat='option in vm.listNames track by $index' value='{{option}}'>{{option}}</option>
             </select>
-            <div class='current-list-header'>{{vm.currentList}}</div>
+            <div class='current-list-header'><h1>{{vm.currentList}}</h1></div>
      </div>
      
-     <button ng-click='vm.addProduct(vm.currentList)'>Add product</button>
-     
-     <div class='productListing' ng-repeat='product in vm.productList track by $index'>
-         {{product.url}}
-         <br>{{product.name}}
-         <br>{{product.price}}
-         <br><div ng-click='vm.removeProduct(product.id)'>[x]</div>
+     <button class='button' ng-click='vm.addProduct(vm.currentList)'>Add product</button>
+     <div class='list-container'>
+        <div class='productListing' ng-repeat='product in vm.productList track by $index'>
+                <div class='product-details'>
+                    <div class='product-url'><a href='{{product.url}}' target='_blank'><img src='link.png' class='glyph open' title='Open product'/></a></div>
+                    <div class='product-name'>{{product.name}}</div>
+                    <div class='product-price'>{{product.price}}</div>
+                    <div class='remove-product' ng-click='vm.removeProduct(product.id)'><img src='trash.png' title='Remove product' class='glyph trashcan'></div>
+                </div>
+        </div>
      </div>
      
      <div class='deleteList'>
-         <button ng-click='vm.deleteList(vm.currentList)'>Delete this list</button>
+         <button class='button' ng-click='vm.deleteList(vm.currentList)'>Delete this list</button>
      </div>
      
  </div>
     
 </body>
-<script src='angular.min.js'></script>
-<script src='taobaoApp.js'></script>
-<script src='taobaoSrvc.js'></script>
-<script src='taobaoCtrl.js'></script>
+<script src='lib/angular.min.js'></script>
+<script src='js/taobaoApp.js'></script>
+<script src='js/taobaoSrvc.js'></script>
+<script src='js/taobaoCtrl.js'></script>
 <script src='popup.js'></script>
 </html>

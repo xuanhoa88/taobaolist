@@ -1,0 +1,44 @@
+.list-picker {
+    padding: 0.5em;
+    width: 250px;
+}
+
+.current-list-header {
+    
+    
+    h1 {
+        font-weight: 700;
+        font-size: 1.6em;
+    }
+}
+
+.list-container {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.product-details {
+    
+    display: flex;
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+}
+
+.remove-product {
+    cursor: pointer;
+}
+
+.product-name {
+    font-weight: 700;
+    max-width: 300px;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+.product-price {
+    font-weight: 800;
+    font-size: 1.4em;
+    min-width: 100px;
+    margin-right: 2em;
+}
