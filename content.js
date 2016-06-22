@@ -23,7 +23,15 @@ chrome.runtime.onMessage.addListener(
     
         responseArr = [];
         
-        var price = document.getElementsByClassName('tm-price')[0].innerText;
+        //var price = document.getElementsByClassName('tm-price')[0].innerText;
+        
+        //Check if there's a promotion price
+        if (document.getElementsByClassName('tm-promo-price').length > 0){
+                var price = document.querySelectorAll('.tm-price')[1].innerText;
+        } else {
+            var price = document.getElementsByClassName('tm-price')[0].innerText;
+        }
+        
         var name = document.getElementsByClassName('tb-detail-hd')[0].innerText;
         
         responseArr.push(
