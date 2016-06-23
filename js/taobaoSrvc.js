@@ -72,6 +72,7 @@ angular
            
            item.id = lastId;
            item.price = item.price[0];
+           //item.notes = 'Click to add notes';
            
            var dirtyPrice = item.price;
            item.price = Number(dirtyPrice.replace(/[^0-9\.]+/g,""));
@@ -110,7 +111,20 @@ angular
            
        }
        
-       _this.initializeList = function(){
+       this.addProductNotes = function(id, notes){
+           
+           console.log('begin adding ' + notes);
+           
+            _this.data.forEach(function(ent, i) { 
+                  if (ent.id == id){
+                                ent.notes = notes;
+                                _this.syncStorage();
+                            }
+                      });
+           
+       }
+       
+       this.initializeList = function(){
                
                console.log('no lists found, creating the initial one'); 
                     
@@ -154,31 +168,13 @@ angular
            var toBeDeleted = [];
            var cleanedList = [];
            
-             /*
-             for (var i = 0; i < _this.data.length; i++){
-                 console.log(i);
-                 if (_this.data[i].listName !== listName){
-                     console.log('found a match, its '  + i);
-                     toBeDeleted.push(_this.data[i].id);
-                     console.log(toBeDeleted);
-                 }
-             }*/
               _this.data.forEach(function(ent, i) { 
-                            console.log(i);
-                            console.log(ent.listName);
-                            console.log(listName);
-                            
                   if (ent.listName !== listName){
-                                console.log('not on cleared list:')
-                                console.log(ent);
                                 cleanedList.push(ent);
-                                console.log(cleanedList);
                             }
-                            });
+                      });
                    
-             console.log('the result is this');
              _this.data = cleanedList;
-             console.log(_this.data);
              _this.syncStorage();
            
            /*
