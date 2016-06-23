@@ -18,9 +18,9 @@ angular
                     console.log(keys.taobaoList);
                     _this.data = keys.taobaoList;
                     
-                    for (var i = 0; i < _this.data.length; i++) {
+                    /*for (var i = 0; i < _this.data.length; i++) {
                         _this.data[i]['id'] = i + 1;
-                    }
+                    }*/
                     
                     console.log(_this.data);
                     //create callback for returning storage objects to the controller
@@ -60,8 +60,17 @@ angular
        
        this.addProduct = function(item, listName){
            
-           var id = this.data.length + 1;
-           item.id = id;
+           var lastId = 1;
+           var lastIdIndex = (this.data.length) - 1; //Returns -1 on first run
+           
+           //If adding first item:
+           if (lastIdIndex >= 0){
+               lastId = this.data[lastIdIndex].id +1;
+           } else {
+              // item.id = lastId + 1; //Returns 1 on first run
+           }
+           
+           item.id = lastId;
            item.price = item.price[0];
            
            var dirtyPrice = item.price;
@@ -137,19 +146,54 @@ angular
             });
        }
        
-       _this.clearList = function(listName){
+       _this.clearList = function(newList, listName){
            
-           console.log("clearing list " + listName)
+           console.log("clearing list " + listName);
+           console.log(this.data);
            
-           for (var i = 0; i < this.data.length; i++){
-               if (this.data[i].listName == listName){
-                   console.log('deleting ' + this.data[i].name)
-                   this.data.splice(this.data.indexOf(this.data[i]), 1);
-                   this.syncStorage();
+           var toBeDeleted = [];
+           var cleanedList = [];
+           
+             /*
+             for (var i = 0; i < _this.data.length; i++){
+                 console.log(i);
+                 if (_this.data[i].listName !== listName){
+                     console.log('found a match, its '  + i);
+                     toBeDeleted.push(_this.data[i].id);
+                     console.log(toBeDeleted);
+                 }
+             }*/
+              _this.data.forEach(function(ent, i) { 
+                            console.log(i);
+                            console.log(ent.listName);
+                            console.log(listName);
+                            
+                  if (ent.listName !== listName){
+                                console.log('not on cleared list:')
+                                console.log(ent);
+                                cleanedList.push(ent);
+                                console.log(cleanedList);
+                            }
+                            });
                    
-               }
-           } 
+             console.log('the result is this');
+             _this.data = cleanedList;
+             console.log(_this.data);
+             _this.syncStorage();
            
+           /*
+           this.data.forEach(function(ent, i){
+               
+               toBeDeleted.forEach(function(id, x){
+                   if (ent.id == id){
+                       console.log('found a match, its ' + ent.id + 'and matches ' + id);
+                       _this.data.splice(_this.data.indexOf(ent), 1);
+                       _this.syncStorage();
+                   }
+               })
+               
+           });
+           */
            
        }
        

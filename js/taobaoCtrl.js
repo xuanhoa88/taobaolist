@@ -8,6 +8,12 @@ angular
         
         vm.currentList = 'default';
         
+        vm.debugRemoveAll = function(){
+            chrome.storage.sync.remove('taobaoList');
+            chrome.storage.sync.remove('taobaoListNames');
+            console.log('everything removed');
+        }
+        
         vm.fetchItems = function(){
             
             vm.productList = [];
@@ -143,7 +149,7 @@ angular
            var c = confirm('Clear this list?');
             
             if (c == true){
-                taobaoSrvc.clearList(listName);
+                taobaoSrvc.clearList(vm.productList, listName);
                 vm.fetchItems();
                 //vm.fetchLists();
             } else {
