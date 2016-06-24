@@ -5,6 +5,8 @@
 </head>
 <body ng-app='taobaoList' ng-controller="taobaoCtrl as vm">
     
+<div class='debug-controllers' ng-click='vm.debugRemoveAll()'>Remove all lists</div>
+    
  <div class='whole-container'>
      
      <div class='newList-container'>
@@ -35,6 +37,13 @@
                     <div class='product-price'>{{product.price.toLocaleString("en-GB", {style:"currency", "currency": "CNY", minimumFractionDigits: 2})}}</div>
                     <div class='remove-product' ng-click='vm.removeProduct(product.id)'><img src='trash.png' title='Remove product' class='glyph trashcan'></div>
                 </div>
+                <div class='product-notes'>
+                    <div class='product-notes-glyph'></div>
+                    <textarea ng-model='product.notes' class='product-notes-textarea' placeholder='Click to add notes' ng-blur='vm.updateProductNotes(product.id, product.notes)'>{{product.notes}}</textarea></div>
+        </div>
+        <div class='price-total'>
+        <div class='price-total-label'><h1>Total price: </h1></div>
+        <div class='price-total-amount'>{{vm.priceTotal.toLocaleString("en-GB", {style:"currency", "currency": "CNY", minimumFractionDigits: 2})}}</div>
         </div>
      </div>
      <div class='list-controls'>

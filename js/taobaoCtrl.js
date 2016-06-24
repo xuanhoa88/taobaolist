@@ -8,6 +8,16 @@ angular
         
         vm.currentList = 'default';
         
+        vm.debugRemoveAll = function(){
+            chrome.storage.sync.remove('taobaoList');
+            chrome.storage.sync.remove('taobaoListNames');
+            console.log('everything removed');
+        }
+        
+        vm.updateProductNotes = function(id, notes) {
+            taobaoSrvc.addProductNotes(id, notes);
+        }
+        
         vm.fetchItems = function(){
             
             vm.productList = [];
@@ -21,6 +31,10 @@ angular
                     }
                 }
                 
+                vm.priceTotal = 0;
+                for (var i = 0; i < vm.productList.length;i++){
+                             vm.priceTotal += vm.productList[i].price; 
+                            }
                 //after receiving the callback apply it to the scope
                     $scope.$apply(); 
                 
@@ -143,7 +157,7 @@ angular
            var c = confirm('Clear this list?');
             
             if (c == true){
-                taobaoSrvc.clearList(listName);
+                taobaoSrvc.clearList(vm.productList, listName);
                 vm.fetchItems();
                 //vm.fetchLists();
             } else {

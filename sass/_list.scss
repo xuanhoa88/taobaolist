@@ -44,6 +44,46 @@
     text-align: right;
 }
 
+.product-notes {
+    display: flex;
+}
+
+.product-notes-glyph {
+    width: 16px;
+    height: 16px;
+    background-image: url("edit.png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+.product-notes-textarea {
+    border: 0;
+    font-family: inherit;
+    margin-left: 30px;
+    width: 295px;
+    color: #737070;
+}
+
 .list-controls {
     display: flex;
+}
+
+.price-total {
+    display: flex;
+}
+
+.price-total-label {
+    
+    h1 {
+        margin: 0;
+        font-size: 2em;
+    }
+    
+}
+
+.price-total-amount {
+    font-size: 2em;
+    font-weight: 700;
+    margin-left: 53%;
+    text-align: right;
 }
