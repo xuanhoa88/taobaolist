@@ -2,10 +2,11 @@ angular
     .module('taobaoList')
     .service('taobaoSrvc', taobaoSrvc);
     
-   function taobaoSrvc() {
+   function taobaoSrvc($http) {
        
        _this = this;
        //Create empty array to populate with storage objects
+       this.euroRate = [];
        this.data = [];
        var listNames = [];
        
@@ -40,6 +41,30 @@ angular
                         console.log('Data is stored in Chrome storage');
                     });
         }
+        
+        this.getEuroRate = function(callback){
+	
+		      var url="http://api.fixer.io/latest?base=CNY";
+	
+                    $http.get(url)
+                                .then(
+                                    function(response) {
+                                    if (typeof response.data === 'object'){
+                                        console.log("The CNY to EUR rate is:");
+                                        console.log(response.data.rates.EUR);
+                                        _this.euroRate.push(response.data.rates.EUR);
+                                        console.log(_this.euroRate);
+                                        callback(_this.euroRate[0]);
+                                    } else {
+                                        console.log("nothing.");
+                                    }
+                                    },function(error) {
+                                        console.log("It didn't work.");
+                                    }
+                                    );
+                                    
+                    
+            }
         
        //Remove one object
        this.removeProduct = function(item) {

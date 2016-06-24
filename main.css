@@ -83,7 +83,7 @@
   margin-right: 2em;
 }
 
-/* line 39, sass/_list.scss */
+/* line 42, sass/_list.scss */
 .product-price {
   font-weight: 800;
   font-size: 1.4em;
@@ -91,13 +91,20 @@
   margin-right: 2em;
   text-align: right;
 }
+/* line 49, sass/_list.scss */
+.product-price.euro {
+  min-width: 20px;
+  font-size: 1.3em;
+  color: #847676;
+  margin-top: 2px;
+}
 
-/* line 47, sass/_list.scss */
+/* line 57, sass/_list.scss */
 .product-notes {
   display: flex;
 }
 
-/* line 51, sass/_list.scss */
+/* line 61, sass/_list.scss */
 .product-notes-glyph {
   width: 16px;
   height: 16px;
@@ -106,7 +113,7 @@
   background-size: 100% auto;
 }
 
-/* line 59, sass/_list.scss */
+/* line 69, sass/_list.scss */
 .product-notes-textarea {
   border: 0;
   font-family: inherit;
@@ -115,28 +122,39 @@
   color: #737070;
 }
 
-/* line 67, sass/_list.scss */
+/* line 77, sass/_list.scss */
 .list-controls {
   display: flex;
 }
 
-/* line 71, sass/_list.scss */
+/* line 81, sass/_list.scss */
 .price-total {
   display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-/* line 77, sass/_list.scss */
+/* line 89, sass/_list.scss */
 .price-total-label h1 {
   margin: 0;
   font-size: 2em;
 }
 
-/* line 84, sass/_list.scss */
+/* line 96, sass/_list.scss */
 .price-total-amount {
   font-size: 2em;
   font-weight: 700;
-  margin-left: 53%;
+  margin-left: 240px;
   text-align: right;
+}
+
+/* line 103, sass/_list.scss */
+.price-total-euro {
+  margin-left: 247px;
+  text-align: right;
+  font-size: 1.7em;
+  font-weight: 700;
+  color: #847676;
 }
 
 /* line 6, sass/main.scss */

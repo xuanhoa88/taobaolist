@@ -34,7 +34,10 @@
                 <div class='product-details'>
                     <div class='product-url'><a href='{{product.url}}' target='_blank'><img src='link.png' class='glyph open' title='Open product'/></a></div>
                     <div class='product-name'>{{product.name}}</div>
-                    <div class='product-price'>{{product.price.toLocaleString("en-GB", {style:"currency", "currency": "CNY", minimumFractionDigits: 2})}}</div>
+                    <div class='product-price-container'>
+                    <div class='product-price yuan'>{{product.price.toLocaleString("en-GB", {style:"currency", "currency": "CNY", minimumFractionDigits: 2})}}</div>
+                    <div class='product-price euro'>{{(product.price*vm.euroRate).toLocaleString("en-GB", {style:"currency", "currency": "EUR", minimumFractionDigits: 2})}}</div>
+                    </div>
                     <div class='remove-product' ng-click='vm.removeProduct(product.id)'><img src='trash.png' title='Remove product' class='glyph trashcan'></div>
                 </div>
                 <div class='product-notes'>
@@ -43,7 +46,13 @@
         </div>
         <div class='price-total'>
         <div class='price-total-label'><h1>Total price: </h1></div>
-        <div class='price-total-amount'>{{vm.priceTotal.toLocaleString("en-GB", {style:"currency", "currency": "CNY", minimumFractionDigits: 2})}}</div>
+        <div class='price-total-container'>
+            <div class='price-total-amount'>
+                {{vm.priceTotal.toLocaleString("en-GB", {style:"currency", "currency": "CNY", minimumFractionDigits: 2})}}
+                </div>
+            <div class='price-total-euro'>
+                {{(vm.priceTotal*vm.euroRate).toLocaleString("en-GB", {style:"currency", "currency": "EUR", minimumFractionDigits: 2})}}
+            </div>
         </div>
      </div>
      <div class='list-controls'>

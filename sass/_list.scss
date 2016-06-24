@@ -36,14 +36,24 @@
     margin-right: 2em;
 }
 
+.product-price-container {
+}
+
 .product-price {
     font-weight: 800;
     font-size: 1.4em;
     min-width: 100px;
     margin-right: 2em;
     text-align: right;
+    
+    &.euro {
+    min-width: 20px;
+    font-size: 1.3em;
+    color: #847676;
+    margin-top: 2px;
 }
 
+}
 .product-notes {
     display: flex;
 }
@@ -70,6 +80,8 @@
 
 .price-total {
     display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .price-total-label {
@@ -84,6 +96,14 @@
 .price-total-amount {
     font-size: 2em;
     font-weight: 700;
-    margin-left: 53%;
+    margin-left: 240px;
     text-align: right;
+}
+
+.price-total-euro {
+    margin-left: 247px;
+    text-align: right;
+    font-size: 1.7em;
+    font-weight: 700;
+    color: #847676;
 }

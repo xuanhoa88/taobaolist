@@ -180,6 +180,14 @@ angular
             }
         }
         
+       vm.getEuroRate =
+            function() { 
+                taobaoSrvc.getEuroRate(function(response){
+                                vm.euroRate = response;
+                            });
+            };
+        
         vm.fetchItems();
         vm.fetchLists();
+        vm.getEuroRate();
     }
